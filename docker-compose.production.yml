@@ -12,19 +12,19 @@ services:
       - pg_data:/var/lib/postgresql/data
     env_file: .env
   backend:
-    build: ./backend/
+    image: yotur/kittygram_backend
     env_file: .env
     volumes:
       - media:/app/media
       - static:/app/backend_static
   frontend:
     env_file: .env
-    build: ./frontend/
+    image: yotur/kittygram_frontend
     command: cp -r /app/build/. /static/
     volumes:
       - static:/static
   gateway:
-    build: ./nginx/
+    image: yotur/kittygram_gateway
     env_file: .env
     ports:
       - 9000:80
