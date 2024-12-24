@@ -1,4 +1,4 @@
-ersion: '3'
+version: '3'
 
 volumes:
   pg_data:
@@ -22,12 +22,12 @@ services:
     image: yotur/kittygram_frontend
     command: cp -r /app/build/. /static/
     volumes:
-      - static:/static
+      - static:/frontend_static
   gateway:
     image: yotur/kittygram_gateway
     env_file: .env
+    volumes:
+      - static:/static/
+      - media:/media
     ports:
       - 9000:80
-    volumes:
-      - static:/staticfiles/
-      - media:/media
