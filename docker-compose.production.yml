@@ -1,4 +1,4 @@
-version: '3'
+ersion: '3'
 
 volumes:
   pg_data:
@@ -29,5 +29,5 @@ services:
     ports:
       - 9000:80
     volumes:
-      - static:/static
+      - static:/staticfiles/
       - media:/media
