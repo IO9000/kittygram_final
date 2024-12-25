@@ -24,15 +24,15 @@ services:
     image: yotur/kittygram_frontend
     command: cp -r /app/build/. /static/
     volumes:
-      - static:/frontend_static
+      - static:/static
   gateway:
     image: yotur/kittygram_gateway
     env_file: .env
-    volumes:
-      - static:/staticfiles/
-      - media:/media
     ports:
       - 9000:80
+    volumes:
+      - static:/static/
+      - media:/media/
     depends_on:
       - frontend
       - backend
