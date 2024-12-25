@@ -16,7 +16,7 @@ DEBUG = os.getenv('DEBUG', 'False').lower() == 'true'
 
 allowed_hosts_env = os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1')
 
-ALLOWED_HOSTS = allowed_hosts_env.split(',')
+ALLOWED_HOSTS = [host.strip() for host in allowed_hosts_env.split(',')]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -60,6 +60,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'kittygram_backend.wsgi.application'
+
 
 if USE_SQLITE:
     DATABASES = {
