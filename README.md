@@ -1,26 +1,64 @@
-#  Как работать с репозиторием финального задания
+# Описание проекта
+
+    Kittygram — это веб-приложение, предназначенное для обмена фотографиями и видео с милыми котиками.
+Пользователи могут загружать свои фотографии, оставлять комментарии и ставить лайки.
+Проект создан для того, чтобы объединить любителей котиков и предоставить им платформу для общения и обмена контентом.
 
 ## Что нужно сделать
 
-Настроить запуск проекта Kittygram в контейнерах и CI/CD с помощью GitHub Actions
+    - Регистрация и авторизация пользователей
+    - Загрузка и отображение фотографий котиков
 
-## Как проверить работу с помощью автотестов
+## Стек технологий
 
-В корне репозитория создайте файл tests.yml со следующим содержимым:
-```yaml
-repo_owner: ваш_логин_на_гитхабе
-kittygram_domain: полная ссылка (https://доменное_имя) на ваш проект Kittygram
-taski_domain: полная ссылка (https://доменное_имя) на ваш проект Taski
-dockerhub_username: ваш_логин_на_докерхабе
-```
+    - Backend: Python, Django, Django REST Framework
+    - Frontend: React
+    - База данных: PostgreSQL
+    - Контейнеризация: Docker
+    - CI/CD: GitHub Actions
+    - Тестирование: Pytest
 
-Скопируйте содержимое файла `.github/workflows/main.yml` в файл `kittygram_workflow.yml` в корневой директории проекта.
+# Развертывание проекта
 
-Для локального запуска тестов создайте виртуальное окружение, установите в него зависимости из backend/requirements.txt и запустите в корневой директории проекта `pytest`.
+Клонируйте репозиторий:
+    ```
+    git clone https://github.com/ваш_логин/kittygram.git
+    cd kittygram
+    ```
 
-## Чек-лист для проверки перед отправкой задания
+Создайте и активируйте виртуальное окружение:
+    ```
+    python -m venv venv
+    source venv/bin/activate  # для Linux/Mac
+    venv\Scripts\activate  # для Windows
+    ```
+Установите зависимости:
+    ```
+    pip install -r backend/requirements.txt
+    ```
+Запустите проект:
+    ```
+    docker compose -f docker-compose.production.yml up -d
+    ```
+Установите зависимости:
+    ```
+    docker compose -f docker-compose.production.yml exec backend python manage.py migrate
+    ```
 
-- Проект Taski доступен по доменному имени, указанному в `tests.yml`.
-- Проект Kittygram доступен по доменному имени, указанному в `tests.yml`.
-- Пуш в ветку main запускает тестирование и деплой Kittygram, а после успешного деплоя вам приходит сообщение в телеграм.
-- В корне проекта есть файл `kittygram_workflow.yml`.
+# Заполнение .env
+
+    Создайте и откройте файл .env в текстовом редакторе и добавьте следующие переменные окружения:
+    POSTGRES_USER = ...
+    POSTGRES_PASSWORD = ...
+    POSTGRES_DB = ...
+
+    DB_HOST = ...
+    DB_PORT = ...
+    SECRET_KEY = ...
+    USE_SQLITE = ...
+    DEBUG = ...
+    ALLOWED_HOSTS = ...
+
+## Автор
+Проект разработан IO9000.
+![example workflow](https://github.com/IO9000/kittygram_final/actions/workflows/main.yml/badge.svg)

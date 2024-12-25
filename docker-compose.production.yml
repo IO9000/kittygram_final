@@ -17,6 +17,8 @@ services:
     volumes:
       - media:/app/media
       - static:/app/backend_static
+    depends_on:
+      - db 
   frontend:
     env_file: .env
     image: yotur/kittygram_frontend
@@ -27,7 +29,10 @@ services:
     image: yotur/kittygram_gateway
     env_file: .env
     volumes:
-      - static:/static/
+      - static:/staticfiles/
       - media:/media
     ports:
       - 9000:80
+    depends_on:
+      - frontend
+      - backend

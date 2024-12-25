@@ -17,6 +17,8 @@ services:
     volumes:
       - media:/app/media
       - static:/app/backend_static
+    depends_on:
+      - db
   frontend:
     env_file: .env
     build: ./frontend/
@@ -31,3 +33,6 @@ services:
     volumes:
       - static:/static
       - media:/media
+    depends_on:
+      - frontend
+      - backend
